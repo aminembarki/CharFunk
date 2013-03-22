@@ -1,31 +1,169 @@
-CharFunk
-========
+#CharFunk
 
-CharFunk provides some of the functionality that Java's Character class does, specifically for testing whether characters are letters or digits.
+CharFunk provides some of the functionality that Java's Character class does.  For example, it lets you test whether characters are letters or digits.
 
-I needed a way to test whether strings in JavaScript were valid names in a Java/C/Javascript sense (leading letter or underscore; the rest letter, digit, underscore, dash).  I needed this to work in a internationally compatible way (so a regex like "\W" will not work unfortunately).  I could not find any existing solutions on the web (though if they exist, I would love to see them).
+Here are some of the things you can do with CharFunk:
 
-The utility class I came up with supports some basic char testing facilities.  It's general type ranges were harvested using Java's Character .isLetter(ch) and .isNumber(ch) methods.  The functions it contains are as follows:
+    //Is this character a digit?
+    CharFunk.isDigit("A"); //false
+    CharFunk.isDigit("1"); //true
+    CharFunk.isDigit('\u0E54'); //true - that's Thai #4 - http://unicodinator.com/#0E54
 
-    CharFunk.isLetterOrDigit(char)
-      - Returns true if the char is a letter or digit
+    //Is this character a mirrored character?
+    CharFunk.isDigit("A"); //false
+    CharFunk.isDigit("("); //true
+    CharFunk.isDigit('\u2039'); //true - that's a Single Left-pointing Angle Quotation Mark - http://unicodinator.com/#2039
 
-    CharFunk.isLetter(char)
-      - Returns true if the char is a letter
+    //Is this string valid JavaScript Identifier?
+    CharFunk.isValidName('Apple');          //true
+    CharFunk.isValidName('تفاحة');            //true - that's the Arabic word for apple
+    CharFunk.isValidName('Apple Dumpling'); //false
+    CharFunk.isValidName('function');       //true
+    CharFunk.isValidName('function',true);  //false - when that second argument is set truthy it means we want to avoid reserved keywords
 
-    CharFunk.isDigit(char)
-      - Returns true if the char is a digit
-
-    CharFunk.isValidName(string[, allowed])
-      - Supply a string to test as well as an optional additional 
-        string of allowed additional characters, and it will return 
-        true/false indicating if this is a valid name string
-
-    CharFunk.isValidFirst(char)
-      - Returns true or false depending on if the supplied char (or 
-        first character of a string) is a valid name first character.
-
-    CharFunk.isWhiteSpace(char)
-      - Returns true if the char is whitespace
+    //Replace all the characters that are not letters or digits with an underscore
+    CharFunk.replaceMatches("What will come out?",function(ch) {
+      return CharFunk.isLetterOrDigit(ch);
+      },"_"); //will return "What_will_come_out_"
       
 I cannot guarantee correctness and do not have the necessary Unicode expertise to make more improvements, but now this is on GitHub so anybody can help fix and make improvements.
+
+Interested in contributing?  Check out contributors.md for some details.
+
+---
+
+
+### CharFunk.getDirectionality(ch)
+Used to find the directionality, which is handled a bit differently than the other sets of properties since we need a value back, not just true/false.
+Returns one of the following:
++ `UNDEFINED`
++ `L`   for LEFT_TO_RIGHT
++ `R`   for RIGHT_TO_LEFT
++ `AL`  for RIGHT_TO_LEFT_ARABIC
++ `EN`  for EUROPEAN_NUMBER
++ `ES`  for EUROPEAN_NUMBER_SEPARATOR
++ `ET`  for EUROPEAN_NUMBER_TERMINATOR
++ `AN`  for ARABIC_NUMBER
++ `CS`  for COMMON_NUMBER_SEPARATOR
++ `NSM` for NONSPACING_MARK
++ `BN`  for BOUNDARY_NEUTRAL
++ `B`   for PARAGRAPH_SEPARATOR
++ `S`   for SEGMENT_SEPARATOR
++ `WS`  for WHITESPACE
++ `ON`  for OTHER_NEUTRALS
++ `LRE` for LEFT_TO_RIGHT_EMBEDDING
++ `LRO` for LEFT_TO_RIGHT_OVERRIDE
++ `RLE` for RIGHT_TO_LEFT_EMBEDDING
++ `RLO` for RIGHT_TO_LEFT_OVERRIDE
++ `PDF` for POP_DIRECTIONAL_FORMAT
+
+
+`@param {String} string` - a length 1 string
+`@returns {String}` a string representing the directionality, as defined above
+
+
+### CharFunk.isAllLettersOrDigits(string)
+Returns true if the string argument is composed of all letters and digits
+
+`@param {String} string` - a string of any length
+`@returns {Boolean}` 
+
+
+### CharFunk.isDigit(ch)
+Returns true if provided a length 1 string that is a letter
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isLetter(ch)
+Returns true if provided a length 1 string that is a letter
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isLetterNumber(ch)
+Returns true if provided a length 1 string that is in the Unicode "Nl" category.
+Beware -- this is NOT the same thing as isLetterOrDigit()!
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isLetterOrDigit(ch)
+Returns true if provided a length 1 string that is a letter or a digit
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isLowerCase(ch)
+Returns true if provided a length 1 string that is lowercase
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isMirrored(ch)
+Returns true if provided a length 1 string that is a mirrored character
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isOnly(string,callback)
+Returns true if all characters in the provided string result in a true return from the callback
+
+`@param {String} string` - a string of any length
+`@param {Function} callback` - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+`@returns {Boolean}` 
+
+
+### CharFunk.isUpperCase(ch)
+Returns true if provided a length 1 string that is uppercase
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isValidFirstForName(ch)
+Returns true if provided a length 1 string that is a valid leading character for a JavaScript identifier
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isValidMidForName(ch)
+Returns true if provided a length 1 string that is a valid non-leading character for a ECMAScript identifier
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.isValidName(string,checkReserved)
+Returns true if the string is a valid ECMAScript identifier.
+This is a bit more restrictive than browsers tend to be, using the actual rules http://www.ecma-international.org/ecma-262/5.1/
+
+`@param {String} string` - a string of any length
+`@param {Boolean} checkReserved` - set to true if you wish to get back false if string is a reserved ECMAScript keyword
+`@returns {Boolean}` 
+
+
+### CharFunk.isWhitespace(ch)
+Returns true if provided a length 1 string that is a whitespace character
+
+`@param {String} ch` - a length 1 string
+`@returns {Boolean}` 
+
+
+### CharFunk.replaceMatches(string,callback,ch)
+Returns a new string with all matched characters replaced.
+If the callback returns a string, then that will be used as the replacement.
+Otherwise, if a ch argument is provided, then that will be used as a replacement.
+If the callback does not return a string and the ch is not provided, then matched characters will simply be removed.
+
+`@param {String} string` - a string of any length
+`@param {Function} callback` - a function to call for each character, which must return a string as a replacement value, otherwise a true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+`@param {String} ch` - optional, a length 1 string for replacement
+`@returns {String}` a new string
