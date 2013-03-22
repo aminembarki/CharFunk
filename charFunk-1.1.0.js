@@ -91,7 +91,6 @@ These were harvested using Java's Character.isLetter() and .isDigit()
         */          
         inflateProperty=function(set) {
             var 
-                di,
                 ci, 
                 prpnam,
                 prpmap={}, //maps the property to a number
@@ -102,7 +101,7 @@ These were harvested using Java's Character.isLetter() and .isDigit()
             for(prpnam in set) {
                 prpmap[prpnam]=++prpcnt;
                 prppos[prpnam]=set[prpnam].shift();
-                if(prppos[prpnam]==0) {
+                if(prppos[prpnam]===0) {
                     codpnt.push([0,prpmap[prpnam]]);
                     prppos[prpnam]=set[prpnam].shift();
                     }
