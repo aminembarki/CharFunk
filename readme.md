@@ -28,7 +28,7 @@ Here are some of the things you can do with CharFunk:
       
 I cannot guarantee correctness and do not have the necessary Unicode expertise to make more improvements, but now this is on GitHub so anybody can help fix and make improvements.
 
-Interested in contributing?  Check out [[contributors.md]] for some details.
+Interested in contributing?  Check out [contributors.md](https://github.com/joelarson4/CharFunk/blob/master/contributors.md) for some details.
 
 ---
 
