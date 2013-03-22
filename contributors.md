@@ -11,7 +11,7 @@ Once you've made any changes, you can build everything using
 
     > ./build.sh
 
-At the end it will open up the two test files in your browser -- unless open *.html does something else on your machine.  That's your clue anyway to run those test files.
+At the end it will open up the two test files in your browser -- unless open *.html does something else on your machine.  That's your clue anyway to run those test files.  Eventually we want these to run using grunt, but... see the issue below.
 
 ###Some areas needing help:
 
