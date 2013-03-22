@@ -28,7 +28,7 @@ Here are some of the things you can do with CharFunk:
       
 I cannot guarantee correctness and do not have the necessary Unicode expertise to make more improvements, but now this is on GitHub so anybody can help fix and make improvements.
 
-Interested in contributing?  Check out contributors.md for some details.
+Interested in contributing?  Check out [[contributors.md]] for some details.
 
 ---
 
@@ -58,28 +58,36 @@ Returns one of the following:
 + `PDF` for POP_DIRECTIONAL_FORMAT
 
 
+
 `@param {String} string` - a length 1 string
+
 `@returns {String}` a string representing the directionality, as defined above
 
 
 ### CharFunk.isAllLettersOrDigits(string)
 Returns true if the string argument is composed of all letters and digits
 
+
 `@param {String} string` - a string of any length
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isDigit(ch)
 Returns true if provided a length 1 string that is a letter
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isLetter(ch)
 Returns true if provided a length 1 string that is a letter
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
@@ -87,57 +95,74 @@ Returns true if provided a length 1 string that is a letter
 Returns true if provided a length 1 string that is in the Unicode "Nl" category.
 Beware -- this is NOT the same thing as isLetterOrDigit()!
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isLetterOrDigit(ch)
 Returns true if provided a length 1 string that is a letter or a digit
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isLowerCase(ch)
 Returns true if provided a length 1 string that is lowercase
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isMirrored(ch)
 Returns true if provided a length 1 string that is a mirrored character
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isOnly(string,callback)
 Returns true if all characters in the provided string result in a true return from the callback
 
+
 `@param {String} string` - a string of any length
+
 `@param {Function} callback` - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isUpperCase(ch)
 Returns true if provided a length 1 string that is uppercase
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isValidFirstForName(ch)
 Returns true if provided a length 1 string that is a valid leading character for a JavaScript identifier
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isValidMidForName(ch)
 Returns true if provided a length 1 string that is a valid non-leading character for a ECMAScript identifier
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
@@ -145,15 +170,20 @@ Returns true if provided a length 1 string that is a valid non-leading character
 Returns true if the string is a valid ECMAScript identifier.
 This is a bit more restrictive than browsers tend to be, using the actual rules http://www.ecma-international.org/ecma-262/5.1/
 
+
 `@param {String} string` - a string of any length
+
 `@param {Boolean} checkReserved` - set to true if you wish to get back false if string is a reserved ECMAScript keyword
+
 `@returns {Boolean}` 
 
 
 ### CharFunk.isWhitespace(ch)
 Returns true if provided a length 1 string that is a whitespace character
 
+
 `@param {String} ch` - a length 1 string
+
 `@returns {Boolean}` 
 
 
@@ -163,7 +193,11 @@ If the callback returns a string, then that will be used as the replacement.
 Otherwise, if a ch argument is provided, then that will be used as a replacement.
 If the callback does not return a string and the ch is not provided, then matched characters will simply be removed.
 
+
 `@param {String} string` - a string of any length
+
 `@param {Function} callback` - a function to call for each character, which must return a string as a replacement value, otherwise a true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+
 `@param {String} ch` - optional, a length 1 string for replacement
+
 `@returns {String}` a new string

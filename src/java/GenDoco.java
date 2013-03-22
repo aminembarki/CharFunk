@@ -53,7 +53,7 @@ public class GenDoco {
                         int crlidx=lin.indexOf("}");
                         if(crlidx>-1) endquo=crlidx+1;
                         if(dshidx>-1) endquo=dshidx;
-                        outmkd.add("`"+lin.substring(1,endquo).trim()+"` "+lin.substring(endquo).trim());
+                        outmkd.add("\n`"+lin.substring(1,endquo).trim()+"` "+lin.substring(endquo).trim());
                     }
                     else {
                         outmkd.add(lin.substring(Math.min(lin.length(),3)));
