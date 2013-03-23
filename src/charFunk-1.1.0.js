@@ -200,7 +200,7 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
         },
 
         /**
-         *  Returns true if provided a length 1 string that is a letter
+         *  Returns true if provided a length 1 string that is a digit
          *  @param {String} ch - a length 1 string
          *  @returns {Boolean}
          */

@@ -33,9 +33,10 @@ Interested in contributing?  Check out [contributors.md](https://github.com/joel
 If you are working on anything involving Unicode characters, you might also find this helpful: [Unicodinator](http://unicodinator.com).
 
 ---
+##API
 
 
-### CharFunk.getDirectionality(ch)
+###CharFunk.getDirectionality(ch)
 Used to find the directionality, which is handled a bit differently than the other sets of properties since we need a value back, not just true/false.
 Returns one of the following:
 + `UNDEFINED`
@@ -66,7 +67,7 @@ Returns one of the following:
 `@returns {String}` a string representing the directionality, as defined above
 
 
-### CharFunk.isAllLettersOrDigits(string)
+###CharFunk.isAllLettersOrDigits(string)
 Returns true if the string argument is composed of all letters and digits
 
 
@@ -75,7 +76,16 @@ Returns true if the string argument is composed of all letters and digits
 `@returns {Boolean}` 
 
 
-### CharFunk.isDigit(ch)
+###CharFunk.isDigit(ch)
+Returns true if provided a length 1 string that is a digit
+
+
+`@param {String} ch` - a length 1 string
+
+`@returns {Boolean}` 
+
+
+###CharFunk.isLetter(ch)
 Returns true if provided a length 1 string that is a letter
 
 
@@ -84,16 +94,7 @@ Returns true if provided a length 1 string that is a letter
 `@returns {Boolean}` 
 
 
-### CharFunk.isLetter(ch)
-Returns true if provided a length 1 string that is a letter
-
-
-`@param {String} ch` - a length 1 string
-
-`@returns {Boolean}` 
-
-
-### CharFunk.isLetterNumber(ch)
+###CharFunk.isLetterNumber(ch)
 Returns true if provided a length 1 string that is in the Unicode "Nl" category.
 Beware -- this is NOT the same thing as isLetterOrDigit()!
 
@@ -103,7 +104,7 @@ Beware -- this is NOT the same thing as isLetterOrDigit()!
 `@returns {Boolean}` 
 
 
-### CharFunk.isLetterOrDigit(ch)
+###CharFunk.isLetterOrDigit(ch)
 Returns true if provided a length 1 string that is a letter or a digit
 
 
@@ -112,7 +113,7 @@ Returns true if provided a length 1 string that is a letter or a digit
 `@returns {Boolean}` 
 
 
-### CharFunk.isLowerCase(ch)
+###CharFunk.isLowerCase(ch)
 Returns true if provided a length 1 string that is lowercase
 
 
@@ -121,7 +122,7 @@ Returns true if provided a length 1 string that is lowercase
 `@returns {Boolean}` 
 
 
-### CharFunk.isMirrored(ch)
+###CharFunk.isMirrored(ch)
 Returns true if provided a length 1 string that is a mirrored character
 
 
@@ -130,7 +131,7 @@ Returns true if provided a length 1 string that is a mirrored character
 `@returns {Boolean}` 
 
 
-### CharFunk.isOnly(string,callback)
+###CharFunk.isOnly(string,callback)
 Returns true if all characters in the provided string result in a true return from the callback
 
 
@@ -141,7 +142,7 @@ Returns true if all characters in the provided string result in a true return fr
 `@returns {Boolean}` 
 
 
-### CharFunk.isUpperCase(ch)
+###CharFunk.isUpperCase(ch)
 Returns true if provided a length 1 string that is uppercase
 
 
@@ -150,7 +151,7 @@ Returns true if provided a length 1 string that is uppercase
 `@returns {Boolean}` 
 
 
-### CharFunk.isValidFirstForName(ch)
+###CharFunk.isValidFirstForName(ch)
 Returns true if provided a length 1 string that is a valid leading character for a JavaScript identifier
 
 
@@ -159,7 +160,7 @@ Returns true if provided a length 1 string that is a valid leading character for
 `@returns {Boolean}` 
 
 
-### CharFunk.isValidMidForName(ch)
+###CharFunk.isValidMidForName(ch)
 Returns true if provided a length 1 string that is a valid non-leading character for a ECMAScript identifier
 
 
@@ -168,7 +169,7 @@ Returns true if provided a length 1 string that is a valid non-leading character
 `@returns {Boolean}` 
 
 
-### CharFunk.isValidName(string,checkReserved)
+###CharFunk.isValidName(string,checkReserved)
 Returns true if the string is a valid ECMAScript identifier.
 This is a bit more restrictive than browsers tend to be, using the actual rules http://www.ecma-international.org/ecma-262/5.1/
 
@@ -180,7 +181,7 @@ This is a bit more restrictive than browsers tend to be, using the actual rules 
 `@returns {Boolean}` 
 
 
-### CharFunk.isWhitespace(ch)
+###CharFunk.isWhitespace(ch)
 Returns true if provided a length 1 string that is a whitespace character
 
 
@@ -189,7 +190,7 @@ Returns true if provided a length 1 string that is a whitespace character
 `@returns {Boolean}` 
 
 
-### CharFunk.replaceMatches(string,callback,ch)
+###CharFunk.replaceMatches(string,callback,ch)
 Returns a new string with all matched characters replaced.
 If the callback returns a string, then that will be used as the replacement.
 Otherwise, if a ch argument is provided, then that will be used as a replacement.
