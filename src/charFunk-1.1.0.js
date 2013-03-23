@@ -416,11 +416,11 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
                 if(typeof rsl=="string") {
                     rtn.push(rsl);
                 }
-                else if(rsl) {
-                    rtn.push(string.charAt(ci));
-                }
-                else if(ch) {
+                else if(rsl===true && ch) {
                     rtn.push(ch);
+                }
+                else if(rsl===false) {
+                    rtn.push(string.charAt(ci));
                 }
                 //if ch is not provided, then this spot just get's skipped, removing this character
             }

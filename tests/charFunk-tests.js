@@ -200,10 +200,10 @@ $(function() {'use strict';
     test( 'CharFunk replaceMatches', function() {
         var 
             replace1=function(ch) {
-                return CharFunk.isLetterOrDigit(ch);
+                return !CharFunk.isLetterOrDigit(ch);
             },
             replace2=function(ch) {
-                return CharFunk.isLetterOrDigit(ch);
+                return !CharFunk.isLetterOrDigit(ch);
             },
             replace3=function(ch,idx,len) {
                 return '['+idx+' '+len+']';
