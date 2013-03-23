@@ -69,6 +69,18 @@ Returns one of the following:
 `@returns {String}` a string representing the directionality, as defined above
 
 
+###CharFunk.getMatches(string,callback)
+Returns an array of contiguous matching strings for which the callback returns true, similar to String.match().
+    CharFunk.getMatches("test this out",CharFunk.isLetter); // returns ["test","this","out"]
+
+
+`@param {String} string` - a string of any length
+
+`@param {Function} callback` - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+
+`@returns {Array{String}` }
+
+
 ###CharFunk.isAllLettersOrDigits(string)
 Returns true if the string argument is composed of all letters and digits
 
@@ -204,7 +216,7 @@ Returns the last index where the character causes a true return from the callbac
 
 
 ###CharFunk.matchesAll(string,callback)
-Returns true if all characters in the provided string result in a true return from the callback
+Returns true if all characters in the provided string result in a true return from the callback, similar to String.match().
 
 
 `@param {String} string` - a string of any length
@@ -215,7 +227,7 @@ Returns true if all characters in the provided string result in a true return fr
 
 
 ###CharFunk.replaceMatches(string,callback,ch)
-Returns a new string with all matched characters replaced.
+Returns a new string with all matched characters replaced, similar to String.replace().
 If the callback returns a string, then that will be used as the replacement.
 Otherwise, if a ch argument is provided, then that will be used as a replacement.
 If the callback does not return a string and the ch is not provided, then matched characters will simply be removed.
@@ -228,3 +240,15 @@ If the callback does not return a string and the ch is not provided, then matche
 `@param {String} ch` - optional, a length 1 string for replacement
 
 `@returns {String}` a new string
+
+
+###CharFunk.splitOnMatches(string,callback)
+Splits the string on all matches, similar to String.split().
+    CharFunk.splitOnMatches("test this out",CharFunk.isWhitespace); // returns ["test","this","out"]
+
+
+`@param {String} string` - a string of any length
+
+`@param {Function} callback` - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+
+`@returns {Boolean}` 

@@ -214,4 +214,18 @@ $(function() {'use strict';
         ok( CharFunk.replaceMatches('Test', replace3)=='[0 4][1 4][2 4][3 4]', 'test replacing with custom string');
     });
 
+    test( 'CharFunk getMatches', function() {
+        ok( CharFunk.getMatches('This is a sentence',CharFunk.isLetterOrDigit).join(':')=='This:is:a:sentence', 'getMatches returns array');
+        ok( CharFunk.getMatches('هذا اختبار',CharFunk.isLetterOrDigit).join(':')=="هذا:اختبار", 'getMatches returns array');
+        ok( CharFunk.getMatches('This is a sentence',CharFunk.isMirrored).join(':')==='', 'getMatches returns array');
+        ok( CharFunk.getMatches('Encyclopedia',CharFunk.isLetterOrDigit).join(':')=='Encyclopedia', 'getMatches returns array');
+    });
+
+    test( 'CharFunk splitOnMatches', function() {
+        ok( CharFunk.splitOnMatches('This is a sentence',CharFunk.isWhitespace).join(':')=='This:is:a:sentence', 'splitOnMatches returns array');
+        ok( CharFunk.splitOnMatches('هذا اختبار',CharFunk.isWhitespace).join(':')=="هذا:اختبار", 'splitOnMatches returns array');
+        ok( CharFunk.splitOnMatches('Encyclopedia',CharFunk.isWhitespace).join(':')=='Encyclopedia', 'splitOnMatches returns array');
+    });
+
+
 });
