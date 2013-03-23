@@ -216,7 +216,7 @@ Returns the last index where the character causes a true return from the callbac
 
 
 ###CharFunk.matchesAll(string,callback)
-Returns true if all characters in the provided string result in a true return from the callback, similar to String.match().
+Returns true if all characters in the provided string result in a true return from the callback.
 
 
 `@param {String} string` - a string of any length
