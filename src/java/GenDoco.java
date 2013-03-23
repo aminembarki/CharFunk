@@ -35,7 +35,7 @@ public class GenDoco {
                 if(nxtfnc && lin.indexOf("function(")>-1) {
                     String fncnam="CharFunk."+lin.substring(0,lin.indexOf("="));
                     String fncarg=lin.substring(lin.indexOf("(")+1,lin.indexOf(")"));
-                    outmkd.set(fncidx,"\n\n### "+fncnam+"("+fncarg+")");
+                    outmkd.set(fncidx,"\n\n###"+fncnam+"("+fncarg+")");
                     nxtfnc=false;
                 }
                 else if(lin.startsWith("/*")) {

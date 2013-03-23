@@ -2,10 +2,10 @@
 
 If you can help, please do.  The source files of interest are:
 
-+ `src/charFunk-1.1.0.js` - the actual library
-+ `src/java/GenCharFunkData.java` - this uses java.lang.Character methods to build up and output CharFunk data into the marked sections of charFunk-1.1.0.js and charFunk-test-data.js
-+ `src/java/GenDoco.java` - chews up the comments in charFunk-1.1.0.js and outputs documentation markdown into readme.md
-+ `tests/charFunk-tests.js` - all the qunit tests for CharFunk
++`src/charFunk-1.1.0.js` - the actual library
++`src/java/GenCharFunkData.java` - this uses java.lang.Character methods to build up and output CharFunk data into the marked sections of charFunk-1.1.0.js and charFunk-test-data.js
++`src/java/GenDoco.java` - chews up the comments in charFunk-1.1.0.js and outputs documentation markdown into readme.md
++`tests/charFunk-tests.js` - all the qunit tests for CharFunk
 
 Once you've made any changes, you can build everything using 
 
