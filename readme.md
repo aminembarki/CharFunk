@@ -1,4 +1,4 @@
-#CharFunk
+#CharFunk - a Unicode character utility for JavaScript
 
 CharFunk provides some of the functionality that Java's Character class does.  For example, it lets you test whether characters are letters or digits.
 
