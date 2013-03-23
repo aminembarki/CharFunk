@@ -30,6 +30,8 @@ I cannot guarantee correctness and do not have the necessary Unicode expertise t
 
 Interested in contributing?  Check out [contributors.md](https://github.com/joelarson4/CharFunk/blob/master/contributors.md) for some details.
 
+If you are working on anything involving Unicode characters, you might also find this helpful: [Unicodinator](http://unicodinator.com).
+
 ---
 
 
