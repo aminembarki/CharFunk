@@ -18,9 +18,8 @@ public class GenDoco {
 
             for(String lin : inpmkd) {
                 outmkd.add(lin);
-                if(lin.equals("---")) break;
+                if(lin.equals("##API")) break;
                 }
-            outmkd.add("##API");
 
             int fncidx=-1;//index of where the function header goes
             boolean nxtfnc=false;//next function we want to go back and replace function placeholder
