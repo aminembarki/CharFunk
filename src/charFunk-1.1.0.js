@@ -382,7 +382,7 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
         },
 
         /**
-         *  Returns true if all characters in the provided string result in a true return from the callback, similar to String.match().
+         *  Returns true if all characters in the provided string result in a true return from the callback.
          *  @param {String} string - a string of any length
          *  @param {Function} callback - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
          *  @returns {Boolean}
