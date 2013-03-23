@@ -165,7 +165,20 @@ $(function() {'use strict';
         }
     });
 
-    test( 'CharFunk isOnly', function() {
+    test( 'CharFunk indexOf', function() {
+        ok( CharFunk.indexOf('This is 1 test', CharFunk.isWhitespace)==4, 'test finding first ascii whitespace');
+        ok( CharFunk.indexOf('This\u1680is 1 test', CharFunk.isWhitespace)==4, 'test finding first unicode whitespace');
+        ok( CharFunk.indexOf('Thisis1test', CharFunk.isWhitespace)==-1, 'test finding whitespace but no match exists');
+    });
+
+    test( 'CharFunk lastIndexOf', function() {
+        ok( CharFunk.lastIndexOf('This is 1 test', CharFunk.isWhitespace)==9, 'test finding last ascii whitespace');
+        ok( CharFunk.lastIndexOf('a b c d\u1680e', CharFunk.isWhitespace)==7, 'test finding last unicode whitespace');
+        ok( CharFunk.lastIndexOf('Thisis1test', CharFunk.isWhitespace)==-1, 'test finding whitespace but no match exists');
+    });
+
+
+    test( 'CharFunk matchesAll', function() {
         var 
             check1=function(ch) {
                 return CharFunk.isWhitespace(ch) || CharFunk.isLetterOrDigit(ch);
@@ -174,14 +187,14 @@ $(function() {'use strict';
                 return CharFunk.isMirrored(ch) || CharFunk.isLetterNumber(ch);
             },
             check3=function(ch,idx,len) {
-                if(idx==0 || idx==len-1) return true; //accept anything for first and last position
+                if(idx===0 || idx==len-1) return true; //accept anything for first and last position
                 return CharFunk.isWhitespace(ch) || CharFunk.isLetterOrDigit(ch);
             }
             ;
-        ok( CharFunk.isOnly('This is 1 test', check1), 'test yes for isOnly whitespace or letters or digits');
-        ok( !CharFunk.isOnly('This is 1 test.', check1), 'test no for isOnly whitespace or letters or digits');
-        ok( !CharFunk.isOnly('This is 1 test', check2), 'test no for isOnly mirrored or letternumber');
-        ok( CharFunk.isOnly('!This is 1 test!', check3), 'test yes for isOnly whitespace or letters or digits but accept any start and end');
+        ok( CharFunk.matchesAll('This is 1 test', check1), 'test yes for matchesAll whitespace or letters or digits');
+        ok( !CharFunk.matchesAll('This is 1 test.', check1), 'test no for matchesAll whitespace or letters or digits');
+        ok( !CharFunk.matchesAll('This is 1 test', check2), 'test no for matchesAll mirrored or letternumber');
+        ok( CharFunk.matchesAll('!This is 1 test!', check3), 'test yes for matchesAll whitespace or letters or digits but accept any start and end');
     });
 
     test( 'CharFunk replaceMatches', function() {

@@ -134,6 +134,14 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
         assertChar=function(ch) {
             if(typeof ch!='string' || ch.length!=1) { throw new Error('A length 1 string is required for "ch" arguments.'); }
         },
+        //Check if this is a valid string
+        assertString=function(string) {
+            if(typeof string!="string") { throw new Error("A string is required"); }
+        },
+        //Check if this is a valid function
+        assertFunction=function(callback) {
+            if(typeof callback!="function") { throw new Error("A function is required for callback"); }
+        },
 
         //Helper function for getProperty which navigates the CODEPOINT structure
         findProperty=function(ci,codpnt,str,end) {
@@ -191,7 +199,7 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
          *  @returns {Boolean}
          */
         isAllLettersOrDigits=function(string) {
-            if(typeof string!="string") { throw new Error("A string is required"); }
+            assertString(string);
             var ci;
             for(ci=0; ci<string.length; ci++) {
                 if(!isLetterOrDigit(string.charAt(ci))) return false;
@@ -256,21 +264,6 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
         },
 
         /**
-         *  Returns true if all characters in the provided string result in a true return from the callback
-         *  @param {String} string - a string of any length
-         *  @param {Function} callback - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
-         *  @returns {Boolean}
-         */
-        isOnly=function(string,callback) {
-            if(typeof string!="string") { throw new Error("A string is required"); }
-            var ci;
-            for(ci=0; ci<string.length; ci++) {
-                if(!callback(string.charAt(ci),ci,string.length)) return false;
-            }
-            return true;
-        },
-
-        /**
          *  Returns true if provided a length 1 string that is uppercase
          *  @param {String} ch - a length 1 string
          *  @returns {Boolean}
@@ -312,7 +305,7 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
          *  @returns {Boolean}
          */
         isValidName=function(string,checkReserved) {
-            if(typeof string!="string") { throw new Error("A string is required"); }
+            assertString(string);
 
             if(checkReserved && _RESERVED[string]) return false;
 
@@ -333,6 +326,51 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
         },
 
         /**
+         *  Returns the first index where the character causes a true return from the callback, or -1 if no match
+         *  @param {String} string - a string of any length
+         *  @param {Function} callback - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+         *  @returns {Number}
+         */
+        indexOf=function(string,callback) {
+            assertString(string); assertFunction(callback);
+            var ci;
+            for(ci=0; ci<string.length; ci++) {
+                if(callback(string.charAt(ci),ci,string.length)) return ci;
+            }
+            return -1;
+        },
+
+        /**
+         *  Returns the last index where the character causes a true return from the callback, or -1 if no match
+         *  @param {String} string - a string of any length
+         *  @param {Function} callback - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+         *  @returns {Number}
+         */
+        lastIndexOf=function(string,callback) {
+            assertString(string); assertFunction(callback);
+            var ci;
+            for(ci=string.length-1; ci>-1; ci--) {
+                if(callback(string.charAt(ci),ci,string.length)) return ci;
+            }
+            return -1;
+        },
+
+        /**
+         *  Returns true if all characters in the provided string result in a true return from the callback
+         *  @param {String} string - a string of any length
+         *  @param {Function} callback - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+         *  @returns {Boolean}
+         */
+        matchesAll=function(string,callback) {
+            assertString(string); assertFunction(callback);
+            var ci;
+            for(ci=0; ci<string.length; ci++) {
+                if(!callback(string.charAt(ci),ci,string.length)) return false;
+            }
+            return true;
+        },
+
+        /**
          *  Returns a new string with all matched characters replaced.
          *  If the callback returns a string, then that will be used as the replacement.
          *  Otherwise, if a ch argument is provided, then that will be used as a replacement.
@@ -343,7 +381,8 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
          *  @returns {String} a new string
          */
         replaceMatches=function(string,callback,ch) {
-            if(typeof string!="string") { throw new Error("A string is required"); }
+            assertString(string); assertFunction(callback);
+            if(ch) assertChar(ch);
             var ci, rsl, rtn;
             rtn=[];
             for(ci=0; ci<string.length; ci++) {
@@ -375,12 +414,14 @@ See: https://github.com/joelarson4/CharFunk (previously http://code.google.com/p
         isLetterNumber:isLetterNumber,
         isLowerCase:isLowerCase,
         isMirrored:isMirrored,
-        isOnly:isOnly,
         isUpperCase:isUpperCase,
         isValidFirstForName:isValidFirstForName,
         isValidMidForName:isValidMidForName,
         isValidName:isValidName,
         isWhitespace:isWhitespace,
+        indexOf:indexOf,
+        lastIndexOf:lastIndexOf,
+        matchesAll:matchesAll,
         replaceMatches:replaceMatches
     };
 }())));

@@ -21,11 +21,14 @@ Here are some of the things you can do with CharFunk:
     CharFunk.isValidName('function');       //true
     CharFunk.isValidName('function',true);  //false - when that second argument is set truthy it means we want to avoid reserved keywords
 
-    //Replace all the characters that are not letters or digits with an underscore
+    //Replace all the characters that are not letters or digits or question marks with an underscore
     CharFunk.replaceMatches("What will come out?",function(ch) {
-      return CharFunk.isLetterOrDigit(ch);
+      return CharFunk.isLetterOrDigit(ch) || ch=='?';
       },"_"); //will return "What_will_come_out_"
       
+    //Find the position of last uppercase letter in the string
+    CharFunk.lastIndexOf("Новые Известия",CharFunk.isUpperCase); //returns 6
+
 I cannot guarantee correctness and do not have the necessary Unicode expertise to make more improvements, but now this is on GitHub so anybody can help fix and make improvements.
 
 Interested in contributing?  Check out [contributors.md](https://github.com/joelarson4/CharFunk/blob/master/contributors.md) for some details.
@@ -130,17 +133,6 @@ Returns true if provided a length 1 string that is a mirrored character
 `@returns {Boolean}` 
 
 
-###CharFunk.isOnly(string,callback)
-Returns true if all characters in the provided string result in a true return from the callback
-
-
-`@param {String} string` - a string of any length
-
-`@param {Function} callback` - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
-
-`@returns {Boolean}` 
-
-
 ###CharFunk.isUpperCase(ch)
 Returns true if provided a length 1 string that is uppercase
 
@@ -185,6 +177,39 @@ Returns true if provided a length 1 string that is a whitespace character
 
 
 `@param {String} ch` - a length 1 string
+
+`@returns {Boolean}` 
+
+
+###CharFunk.indexOf(string,callback)
+Returns the first index where the character causes a true return from the callback, or -1 if no match
+
+
+`@param {String} string` - a string of any length
+
+`@param {Function} callback` - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+
+`@returns {Number}` 
+
+
+###CharFunk.lastIndexOf(string,callback)
+Returns the last index where the character causes a true return from the callback, or -1 if no match
+
+
+`@param {String} string` - a string of any length
+
+`@param {Function} callback` - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
+
+`@returns {Number}` 
+
+
+###CharFunk.matchesAll(string,callback)
+Returns true if all characters in the provided string result in a true return from the callback
+
+
+`@param {String} string` - a string of any length
+
+`@param {Function} callback` - a function to call for each character, which must return true if a match or false if not a match.  This function will be provided three arguments: a char to check, a number for the position, and a number for the string length
 
 `@returns {Boolean}` 
 
