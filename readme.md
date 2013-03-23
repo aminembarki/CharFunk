@@ -29,8 +29,6 @@ Here are some of the things you can do with CharFunk:
     //Find the position of last uppercase letter in the string
     CharFunk.lastIndexOf("Новые Известия",CharFunk.isUpperCase); //returns 6
 
-I cannot guarantee correctness and do not have the necessary Unicode expertise to make more improvements, but now this is on GitHub so anybody can help fix and make improvements.
-
 Interested in contributing?  Check out [contributors.md](https://github.com/joelarson4/CharFunk/blob/master/contributors.md) for some details.
 
 If you are working on anything involving Unicode characters, you might also find this helpful: [Unicodinator](http://unicodinator.com).
