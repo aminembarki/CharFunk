@@ -10,9 +10,9 @@ Here are some of the things you can do with CharFunk:
     CharFunk.isDigit('\u0E54'); //true - that's Thai #4 - http://unicodinator.com/#0E54
 
     //Is this character a mirrored character?
-    CharFunk.isDigit("A"); //false
-    CharFunk.isDigit("("); //true
-    CharFunk.isDigit('\u2039'); //true - that's a Single Left-pointing Angle Quotation Mark - http://unicodinator.com/#2039
+    CharFunk.isMirrored("A"); //false
+    CharFunk.isMirrored("("); //true
+    CharFunk.isMirrored('\u2039'); //true - that's a Single Left-pointing Angle Quotation Mark - http://unicodinator.com/#2039
 
     //Is this string valid JavaScript Identifier?
     CharFunk.isValidName('Apple');          //true
